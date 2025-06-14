@@ -126,55 +126,67 @@ const SignatureModal = ({
     }
   };
 
-  return (
+return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {/* Enhanced Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 z-40"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
             onClick={handleClose}
           />
           
-          {/* Modal */}
+          {/* Enhanced Modal */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
           >
-            <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-              {/* Header */}
-              <div className="p-6 border-b border-surface-200">
+            <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200/50">
+              {/* Enhanced Header */}
+              <div className="p-8 border-b border-slate-200/50 bg-gradient-to-r from-blue-50 to-purple-50">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-display font-semibold text-surface-900">
-                    Add Signature
-                  </h2>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                      <ApperIcon name="PenTool" className="w-6 h-6 text-white" />
+                    </div>
+                    <h2 className="text-2xl font-display font-bold text-slate-900">
+                      Add Signature
+                    </h2>
+                  </div>
                   <button
                     onClick={handleClose}
-                    className="p-2 text-surface-400 hover:text-surface-600 rounded-lg hover:bg-surface-50 transition-colors"
+                    className="p-2 text-slate-400 hover:text-slate-600 rounded-xl hover:bg-white/60 transition-all duration-200"
                   >
-                    <ApperIcon name="X" className="w-5 h-5" />
+                    <ApperIcon name="X" className="w-6 h-6" />
                   </button>
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-6 space-y-6">
-                {/* Signer Information */}
-                <div className="space-y-4">
-                  <h3 className="font-medium text-surface-900">Signer Information</h3>
+{/* Enhanced Content */}
+              <div className="p-8 space-y-8">
+                {/* Enhanced Signer Information */}
+                <div className="space-y-6">
+                  <h3 className="font-bold text-lg text-slate-900 flex items-center">
+                    <div className="w-6 h-6 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center mr-3">
+                      <ApperIcon name="User" className="w-4 h-4 text-white" />
+                    </div>
+                    Signer Information
+                  </h3>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <Input
                       label="Full Name"
                       value={signerName}
                       onChange={(e) => setSignerName(e.target.value)}
                       error={errors.name}
                       required
+                      className="border-slate-300 focus:border-blue-500 focus:ring-blue-200"
                     />
                     
                     <Input
@@ -184,38 +196,49 @@ const SignatureModal = ({
                       onChange={(e) => setSignerEmail(e.target.value)}
                       error={errors.email}
                       required
+                      className="border-slate-300 focus:border-blue-500 focus:ring-blue-200"
                     />
                   </div>
                 </div>
-
-                {/* Signature Type Selection */}
-                <div className="space-y-4">
-                  <h3 className="font-medium text-surface-900">Signature Method</h3>
+{/* Enhanced Signature Type Selection */}
+                <div className="space-y-6">
+                  <h3 className="font-bold text-lg text-slate-900 flex items-center">
+                    <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-3">
+                      <ApperIcon name="Settings" className="w-4 h-4 text-white" />
+                    </div>
+                    Signature Method
+                  </h3>
                   
-                  <div className="flex space-x-4">
-                    <button
+                  <div className="grid grid-cols-2 gap-4">
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       onClick={() => setSignatureType('draw')}
-                      className={`flex-1 p-3 rounded-lg border-2 transition-all duration-150 ${
+                      className={`p-6 rounded-xl border-2 transition-all duration-200 ${
                         signatureType === 'draw'
-                          ? 'border-primary bg-primary/5 text-primary'
-                          : 'border-surface-200 hover:border-surface-300'
+                          ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-lg'
+                          : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50'
                       }`}
                     >
-                      <ApperIcon name="Edit3" className="w-5 h-5 mx-auto mb-1" />
-                      <p className="text-sm font-medium">Draw Signature</p>
-                    </button>
+                      <ApperIcon name="Edit3" className="w-8 h-8 mx-auto mb-3" />
+                      <p className="font-semibold">Draw Signature</p>
+                      <p className="text-sm opacity-75 mt-1">Use mouse or touch</p>
+                    </motion.button>
                     
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       onClick={() => setSignatureType('type')}
-                      className={`flex-1 p-3 rounded-lg border-2 transition-all duration-150 ${
+                      className={`p-6 rounded-xl border-2 transition-all duration-200 ${
                         signatureType === 'type'
-                          ? 'border-primary bg-primary/5 text-primary'
-                          : 'border-surface-200 hover:border-surface-300'
+                          ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-lg'
+                          : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50'
                       }`}
                     >
-                      <ApperIcon name="Type" className="w-5 h-5 mx-auto mb-1" />
-                      <p className="text-sm font-medium">Type Signature</p>
-                    </button>
+                      <ApperIcon name="Type" className="w-8 h-8 mx-auto mb-3" />
+                      <p className="font-semibold">Type Signature</p>
+                      <p className="text-sm opacity-75 mt-1">Type your name</p>
+                    </motion.button>
                   </div>
                 </div>
 
@@ -235,8 +258,8 @@ const SignatureModal = ({
                     </Button>
                   </div>
 
-                  {signatureType === 'draw' ? (
-                    <div className="border-2 border-surface-300 rounded-lg overflow-hidden">
+{signatureType === 'draw' ? (
+                    <div className="border-2 border-slate-300 rounded-xl overflow-hidden shadow-inner">
                       <canvas
                         ref={canvasRef}
                         width={600}
@@ -245,16 +268,16 @@ const SignatureModal = ({
                       />
                     </div>
                   ) : (
-                    <div className="space-y-2">
+<div className="space-y-3">
                       <input
                         type="text"
                         value={typedSignature}
                         onChange={(e) => setTypedSignature(e.target.value)}
                         placeholder="Enter your full name"
-                        className="w-full px-4 py-3 border-2 border-surface-300 rounded-lg focus:border-primary focus:ring-4 focus:ring-primary/20 focus:outline-none text-2xl font-cursive text-center"
+                        className="w-full px-6 py-4 border-2 border-slate-300 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-200 focus:outline-none text-2xl font-cursive text-center bg-white shadow-inner"
                         style={{ fontFamily: 'cursive' }}
                       />
-                      <p className="text-sm text-surface-500 text-center">
+                      <p className="text-sm text-slate-500 text-center font-medium">
                         This will be your legal signature
                       </p>
                     </div>
@@ -268,13 +291,15 @@ const SignatureModal = ({
                   )}
                 </div>
 
-                {/* Legal Notice */}
-                <div className="bg-accent/10 border border-accent/20 rounded-lg p-4">
-                  <div className="flex items-start space-x-3">
-                    <ApperIcon name="AlertTriangle" className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                    <div className="text-sm text-surface-700">
-                      <p className="font-medium mb-1">Legal Notice</p>
-                      <p>
+{/* Enhanced Legal Notice */}
+                <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <ApperIcon name="AlertTriangle" className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="text-sm text-slate-700">
+                      <p className="font-bold mb-2 text-slate-900">Legal Notice</p>
+                      <p className="leading-relaxed">
                         By signing this document, you agree to be legally bound by its terms and conditions. 
                         Your signature has the same legal effect as a handwritten signature.
                       </p>
@@ -283,23 +308,30 @@ const SignatureModal = ({
                 </div>
               </div>
 
-              {/* Footer */}
-              <div className="p-6 border-t border-surface-200 flex justify-end space-x-3">
+{/* Enhanced Footer */}
+              <div className="p-8 border-t border-slate-200/50 bg-gradient-to-r from-slate-50 to-slate-100 flex justify-end space-x-4">
                 <Button 
                   variant="ghost"
                   onClick={handleClose}
+                  className="border border-slate-300 hover:bg-slate-100 hover:shadow-md"
                 >
                   Cancel
                 </Button>
                 
-                <Button 
-                  variant="primary"
-                  onClick={handleSubmit}
-                  loading={isSubmitting}
-                  icon="Check"
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  Sign Document
-                </Button>
+                  <Button 
+                    variant="primary"
+                    onClick={handleSubmit}
+                    loading={isSubmitting}
+                    icon="Check"
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl px-8"
+                  >
+                    Sign Document
+                  </Button>
+                </motion.div>
               </div>
             </div>
           </motion.div>

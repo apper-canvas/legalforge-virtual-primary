@@ -5,17 +5,42 @@
 /* Import react-toastify CSS */
 @import 'react-toastify/dist/ReactToastify.css';
 
-/* Ensure scrollbars are visible */
+/* Enhanced base styles */
 body {
   overflow-y: auto;
   overflow-x: hidden;
   margin: 0;
   min-height: 100vh;
+  font-feature-settings: 'rlig' 1, 'calt' 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Prevent horizontal overflow */
 * {
   max-width: 100%;
+}
+
+/* Enhanced scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(248 250 252);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgb(148 163 184), rgb(100 116 139));
+  border-radius: 8px;
+  border: 2px solid rgb(248 250 252);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgb(100 116 139), rgb(71 85 105));
 }
 
 /* Main content areas must allow scroll */
@@ -35,39 +60,78 @@ body {
   }
 }
 
-/* Custom styles for legal document formatting */
+/* Enhanced typography and spacing */
+@layer utilities {
+  .font-display {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, rgb(59 130 246), rgb(147 51 234));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .shadow-soft {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  }
+  
+  .shadow-hover {
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  }
+}
+
+/* Enhanced legal document formatting */
 .legal-document {
-  line-height: 1.6;
-  font-family: 'Times New Roman', serif;
+  line-height: 1.8;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  color: rgb(30 41 59);
 }
 
 .legal-document h1 {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.75rem;
+  font-weight: 700;
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  color: rgb(15 23 42);
+  letter-spacing: -0.025em;
 }
 
 .legal-document h2 {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1.25rem;
+  color: rgb(15 23 42);
+  letter-spacing: -0.025em;
 }
 
 .legal-document p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   text-align: justify;
+  color: rgb(51 65 85);
 }
 
 .legal-document .clause {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgb(248 250 252);
+  border-radius: 0.75rem;
+  border-left: 4px solid rgb(59 130 246);
 }
 
 .legal-document .signature-line {
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid #000;
-  width: 200px;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgb(15 23 42);
+  width: 250px;
   display: inline-block;
 }

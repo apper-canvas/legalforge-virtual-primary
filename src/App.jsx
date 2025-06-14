@@ -19,7 +19,7 @@ function App() {
         </Route>
       </Routes>
       
-      <ToastContainer
+<ToastContainer
         position="top-right"
         autoClose={4000}
         hideProgressBar={false}
@@ -30,8 +30,8 @@ function App() {
         draggable
         pauseOnHover
         theme="light"
-        toastClassName="!bg-white !text-surface-800 !shadow-lg !border !border-surface-200"
-        progressClassName="!bg-primary"
+        toastClassName="!bg-white/95 !backdrop-blur-xl !text-slate-800 !shadow-2xl !border !border-slate-200/50 !rounded-xl"
+        progressClassName="!bg-gradient-to-r !from-blue-500 !to-purple-500"
         className="!z-[9999]"
       />
     </BrowserRouter>

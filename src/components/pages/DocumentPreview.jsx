@@ -180,229 +180,251 @@ const DocumentPreview = () => {
 
   const explanations = getExplanations();
 
-  return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mb-8"
-      >
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              onClick={() => navigate('/my-documents')}
-              icon="ArrowLeft"
-            >
-              Back to Documents
-            </Button>
-            
-            <div className="flex items-center space-x-3">
-              <Badge variant={document.status} icon={getStatusIcon(document.status)}>
-                {document.status}
-              </Badge>
+return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-10"
+        >
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 shadow-soft p-8">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center space-x-6">
+                <Button
+                  variant="ghost"
+                  onClick={() => navigate('/my-documents')}
+                  icon="ArrowLeft"
+                  className="hover:bg-slate-100 hover:shadow-md transition-all duration-200"
+                >
+                  Back to Documents
+                </Button>
+                
+                <div className="flex items-center space-x-4">
+                  <Badge variant={document.status} icon={getStatusIcon(document.status)} className="shadow-sm">
+                    {document.status}
+                  </Badge>
+                  
+                  <span className="w-1.5 h-1.5 bg-slate-300 rounded-full"></span>
+                  
+                  <span className="text-sm text-slate-600 font-medium">
+                    Created {format(new Date(document.createdAt), 'MMM dd, yyyy')}
+                  </span>
+                </div>
+              </div>
               
-              <span className="text-surface-400">•</span>
-              
-              <span className="text-sm text-surface-500">
-                Created {format(new Date(document.createdAt), 'MMM dd, yyyy')}
-              </span>
+              <div className="flex items-center space-x-3">
+                <Button
+                  variant="outline"
+                  onClick={handleSignature}
+                  icon="PenTool"
+                  className="border-slate-300 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700 shadow-sm hover:shadow-md transition-all duration-200"
+                >
+                  Add Signature
+                </Button>
+                
+                <Button
+                  variant="primary"
+                  onClick={handleExportPDF}
+                  loading={isExporting}
+                  icon="Download"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl"
+                >
+                  Export PDF
+                </Button>
+              </div>
+            </div>
+
+            <div>
+              <h1 className="text-4xl font-display font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
+                {document.title}
+              </h1>
+              <p className="text-lg text-slate-600 font-medium">
+                {document.type.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} • {document.jurisdiction}
+              </p>
             </div>
           </div>
-          
-          <div className="flex items-center space-x-3">
-            <Button
-              variant="outline"
-              onClick={handleSignature}
-              icon="PenTool"
-            >
-              Add Signature
-            </Button>
-            
-            <Button
-              variant="secondary"
-              onClick={handleExportPDF}
-              loading={isExporting}
-              icon="Download"
-            >
-              Export PDF
-            </Button>
+        </motion.div>
+
+{/* Mobile Tab Selector */}
+        <div className="lg:hidden mb-8">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 shadow-soft overflow-hidden">
+            <div className="flex">
+              <button
+                onClick={() => setActiveTab('document')}
+                className={`flex-1 px-6 py-4 text-sm font-semibold transition-all duration-200 ${
+                  activeTab === 'document'
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                    : 'bg-white/50 text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                }`}
+              >
+                <ApperIcon name="FileText" className="w-5 h-5 inline mr-2" />
+                Document
+              </button>
+              <button
+                onClick={() => setActiveTab('explanations')}
+                className={`flex-1 px-6 py-4 text-sm font-semibold transition-all duration-200 ${
+                  activeTab === 'explanations'
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                    : 'bg-white/50 text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                }`}
+              >
+                <ApperIcon name="MessageCircle" className="w-5 h-5 inline mr-2" />
+                Explanations
+              </button>
+            </div>
           </div>
         </div>
 
-        <div>
-          <h1 className="text-3xl font-display font-bold text-surface-900 mb-2">
-            {document.title}
-          </h1>
-          <p className="text-surface-600">
-            {document.type.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} • {document.jurisdiction}
-          </p>
-        </div>
-      </motion.div>
-
-      {/* Mobile Tab Selector */}
-      <div className="lg:hidden mb-6">
-        <div className="flex border border-surface-200 rounded-lg overflow-hidden">
-          <button
-            onClick={() => setActiveTab('document')}
-            className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
-              activeTab === 'document'
-                ? 'bg-primary text-white'
-                : 'bg-white text-surface-600 hover:text-surface-900'
-            }`}
-          >
-            <ApperIcon name="FileText" className="w-4 h-4 inline mr-2" />
-            Document
-          </button>
-          <button
-            onClick={() => setActiveTab('explanations')}
-            className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
-              activeTab === 'explanations'
-                ? 'bg-primary text-white'
-                : 'bg-white text-surface-600 hover:text-surface-900'
-            }`}
-          >
-            <ApperIcon name="MessageCircle" className="w-4 h-4 inline mr-2" />
-            Explanations
-          </button>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Document */}
-        <div className={`lg:col-span-2 ${activeTab === 'document' ? 'block' : 'hidden lg:block'}`}>
-          <Card padding="lg" className="min-h-[800px]">
-            <div id="document-content">
-              <DocumentRenderer 
-                document={document} 
-                showSignatures={signatures.length > 0}
-              />
-            </div>
-          </Card>
-        </div>
-
-        {/* Sidebar */}
-        <div className={`space-y-6 ${activeTab === 'explanations' ? 'block' : 'hidden lg:block'}`}>
-          {/* Plain Language Explanations */}
-          <Card>
-            <div className="flex items-center space-x-2 mb-4">
-              <ApperIcon name="MessageCircle" className="w-5 h-5 text-primary" />
-              <h3 className="font-semibold text-surface-900">Plain Language Guide</h3>
-            </div>
-            
-            <div className="space-y-4 max-h-96 overflow-y-auto">
-              {explanations.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="border-l-3 border-primary/20 pl-4"
-                >
-                  <h4 className="font-medium text-sm text-surface-900 mb-2">
-                    {item.title}
-                  </h4>
-                  <p className="text-sm text-surface-600 leading-relaxed">
-                    {item.explanation}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </Card>
-
-          {/* Document Info */}
-          <Card>
-            <div className="flex items-center space-x-2 mb-4">
-              <ApperIcon name="Info" className="w-5 h-5 text-primary" />
-              <h3 className="font-semibold text-surface-900">Document Details</h3>
-            </div>
-            
-            <div className="space-y-3 text-sm">
-              <div className="flex justify-between">
-                <span className="text-surface-500">Type:</span>
-                <span className="text-surface-900 font-medium capitalize">
-                  {document.type.replace('-', ' ')}
-                </span>
-              </div>
-              
-              <div className="flex justify-between">
-                <span className="text-surface-500">Status:</span>
-                <Badge variant={document.status} size="sm">
-                  {document.status}
-                </Badge>
-              </div>
-              
-              <div className="flex justify-between">
-                <span className="text-surface-500">Risk Level:</span>
-                <Badge 
-                  variant={document.riskLevel === 'low' ? 'success' : document.riskLevel === 'medium' ? 'warning' : 'error'} 
-                  size="sm"
-                >
-                  {document.riskLevel}
-                </Badge>
-              </div>
-              
-              <div className="flex justify-between">
-                <span className="text-surface-500">Jurisdiction:</span>
-                <span className="text-surface-900 font-medium">{document.jurisdiction}</span>
-              </div>
-              
-              <div className="flex justify-between">
-                <span className="text-surface-500">Created:</span>
-                <span className="text-surface-900 font-medium">
-                  {format(new Date(document.createdAt), 'MMM dd, yyyy')}
-                </span>
-              </div>
-              
-              <div className="flex justify-between">
-                <span className="text-surface-500">Last Updated:</span>
-                <span className="text-surface-900 font-medium">
-                  {format(new Date(document.updatedAt), 'MMM dd, yyyy')}
-                </span>
+        {/* Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Document */}
+          <div className={`lg:col-span-2 ${activeTab === 'document' ? 'block' : 'hidden lg:block'}`}>
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl border border-slate-200/50 shadow-soft hover:shadow-hover transition-shadow duration-300 p-8 min-h-[800px]">
+              <div id="document-content">
+                <DocumentRenderer 
+                  document={document} 
+                  showSignatures={signatures.length > 0}
+                />
               </div>
             </div>
-          </Card>
+          </div>
 
-          {/* Signatures */}
-          {signatures.length > 0 && (
-            <Card>
-              <div className="flex items-center space-x-2 mb-4">
-                <ApperIcon name="PenTool" className="w-5 h-5 text-primary" />
-                <h3 className="font-semibold text-surface-900">Signatures</h3>
+{/* Sidebar */}
+          <div className={`space-y-8 ${activeTab === 'explanations' ? 'block' : 'hidden lg:block'}`}>
+            {/* Plain Language Explanations */}
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl border border-slate-200/50 shadow-soft hover:shadow-hover transition-shadow duration-300 p-6">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                  <ApperIcon name="MessageCircle" className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="font-bold text-lg text-slate-900">Plain Language Guide</h3>
               </div>
               
-              <div className="space-y-3">
-                {signatures.map((signature, index) => (
-                  <div key={index} className="flex items-center space-x-3 p-3 bg-surface-50 rounded-lg">
-                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                      <ApperIcon name="Check" className="w-4 h-4 text-green-600" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-surface-900 truncate">
-                        {signature.name}
-                      </p>
-                      <p className="text-xs text-surface-500">
-                        {signature.role} • {format(new Date(signature.signedAt), 'MMM dd, yyyy')}
-                      </p>
-                    </div>
-                  </div>
+              <div className="space-y-6 max-h-96 overflow-y-auto">
+                {explanations.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="border-l-4 border-gradient-to-b from-blue-400 to-purple-500 pl-6 py-2 bg-gradient-to-r from-blue-50/50 to-purple-50/50 rounded-r-xl"
+                  >
+                    <h4 className="font-semibold text-sm text-slate-900 mb-3">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-slate-700 leading-relaxed">
+                      {item.explanation}
+                    </p>
+                  </motion.div>
                 ))}
               </div>
-            </Card>
-          )}
-        </div>
-      </div>
+            </div>
 
-      {/* Signature Modal */}
-      <SignatureModal
-        isOpen={showSignatureModal}
-        onClose={() => setShowSignatureModal(false)}
-        onSignatureComplete={handleSignatureComplete}
-        documentId={documentId}
-      />
-    </div>
+{/* Document Info */}
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl border border-slate-200/50 shadow-soft hover:shadow-hover transition-shadow duration-300 p-6">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center">
+                  <ApperIcon name="Info" className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="font-bold text-lg text-slate-900">Document Details</h3>
+              </div>
+              
+              <div className="space-y-4 text-sm">
+                <div className="flex justify-between items-center py-3 border-b border-slate-100">
+                  <span className="text-slate-600 font-medium">Type:</span>
+                  <span className="text-slate-900 font-semibold capitalize bg-slate-50 px-3 py-1 rounded-lg">
+                    {document.type.replace('-', ' ')}
+                  </span>
+                </div>
+                
+                <div className="flex justify-between items-center py-3 border-b border-slate-100">
+                  <span className="text-slate-600 font-medium">Status:</span>
+                  <Badge variant={document.status} size="sm" className="shadow-sm">
+                    {document.status}
+                  </Badge>
+                </div>
+                
+                <div className="flex justify-between items-center py-3 border-b border-slate-100">
+                  <span className="text-slate-600 font-medium">Risk Level:</span>
+                  <Badge 
+                    variant={document.riskLevel === 'low' ? 'success' : document.riskLevel === 'medium' ? 'warning' : 'error'} 
+                    size="sm"
+                    className="shadow-sm"
+                  >
+                    {document.riskLevel}
+                  </Badge>
+                </div>
+                
+                <div className="flex justify-between items-center py-3 border-b border-slate-100">
+                  <span className="text-slate-600 font-medium">Jurisdiction:</span>
+                  <span className="text-slate-900 font-semibold">{document.jurisdiction}</span>
+                </div>
+                
+                <div className="flex justify-between items-center py-3 border-b border-slate-100">
+                  <span className="text-slate-600 font-medium">Created:</span>
+                  <span className="text-slate-900 font-semibold">
+                    {format(new Date(document.createdAt), 'MMM dd, yyyy')}
+                  </span>
+                </div>
+                
+                <div className="flex justify-between items-center py-3">
+                  <span className="text-slate-600 font-medium">Last Updated:</span>
+                  <span className="text-slate-900 font-semibold">
+                    {format(new Date(document.updatedAt), 'MMM dd, yyyy')}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+{/* Signatures */}
+            {signatures.length > 0 && (
+              <div className="bg-white/90 backdrop-blur-sm rounded-2xl border border-slate-200/50 shadow-soft hover:shadow-hover transition-shadow duration-300 p-6">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
+                    <ApperIcon name="PenTool" className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="font-bold text-lg text-slate-900">Signatures</h3>
+                </div>
+                
+                <div className="space-y-4">
+                  {signatures.map((signature, index) => (
+                    <motion.div 
+                      key={index} 
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="flex items-center space-x-4 p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200/50"
+                    >
+                      <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+                        <ApperIcon name="Check" className="w-5 h-5 text-white" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-slate-900 truncate">
+                          {signature.name}
+                        </p>
+                        <p className="text-xs text-slate-600 font-medium">
+                          {signature.role} • {format(new Date(signature.signedAt), 'MMM dd, yyyy')}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
+        </div>
+</div>
+        </div>
+
+        {/* Signature Modal */}
+        <SignatureModal
+          isOpen={showSignatureModal}
+          onClose={() => setShowSignatureModal(false)}
+          onSignatureComplete={handleSignatureComplete}
+          documentId={documentId}
+        />
+      </div>
   );
 };
 

@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import ApperIcon from '@/components/ApperIcon';
-import DocumentCard from '@/components/molecules/DocumentCard';
-import SearchBar from '@/components/molecules/SearchBar';
-import Button from '@/components/atoms/Button';
-import Badge from '@/components/atoms/Badge';
-import SkeletonLoader from '@/components/organisms/SkeletonLoader';
-import ErrorState from '@/components/organisms/ErrorState';
-import EmptyState from '@/components/organisms/EmptyState';
-import { documentService } from '@/services';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import ApperIcon from "@/components/ApperIcon";
+import DocumentCard from "@/components/molecules/DocumentCard";
+import SearchBar from "@/components/molecules/SearchBar";
+import Button from "@/components/atoms/Button";
+import Badge from "@/components/atoms/Badge";
+import SkeletonLoader from "@/components/organisms/SkeletonLoader";
+import ErrorState from "@/components/organisms/ErrorState";
+import EmptyState from "@/components/organisms/EmptyState";
+import { documentService } from "@/services";
 
 const MyDocuments = () => {
   const [documents, setDocuments] = useState([]);
@@ -112,77 +112,89 @@ const MyDocuments = () => {
   }
 
   const statusCounts = getStatusCounts();
-
-  return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mb-8"
-      >
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-              <ApperIcon name="Folder" className="w-6 h-6 text-primary" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-display font-bold text-surface-900">
-                My Documents
-              </h1>
-              <p className="text-surface-600 mt-1">
-                Manage and track your legal documents
-              </p>
+return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Enhanced Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-10"
+        >
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 shadow-soft p-8 mb-8">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl">
+                  <ApperIcon name="Folder" className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-4xl font-display font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    My Documents
+                  </h1>
+                  <p className="text-lg text-slate-600 mt-2 font-medium">
+                    Manage and track your legal documents
+                  </p>
+                </div>
+              </div>
+              
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  onClick={handleCreateNew}
+                  variant="primary"
+                  icon="Plus"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-xl hover:shadow-2xl px-6 py-3"
+                >
+                  Create New
+                </Button>
+              </motion.div>
             </div>
           </div>
-          
-          <Button
-            onClick={handleCreateNew}
-            variant="primary"
-            icon="Plus"
-          >
-            Create New
-          </Button>
-        </div>
 
-        {/* Status Filter Tabs */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {[
-            { key: 'all', label: 'All Documents', icon: 'FileText' },
-            { key: 'draft', label: 'Drafts', icon: 'Edit3' },
-            { key: 'review', label: 'In Review', icon: 'Eye' },
-            { key: 'signed', label: 'Signed', icon: 'CheckCircle' },
-            { key: 'completed', label: 'Completed', icon: 'Archive' }
-          ].map((tab) => (
-            <motion.button
-              key={tab.key}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setStatusFilter(tab.key)}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-150 ${
-                statusFilter === tab.key
-                  ? 'bg-primary text-white shadow-sm'
-                  : 'bg-white text-surface-600 border border-surface-200 hover:border-surface-300 hover:text-surface-900'
-              }`}
-            >
-              <ApperIcon name={tab.icon} className="w-4 h-4" />
-              <span>{tab.label}</span>
-              <Badge
-                variant={statusFilter === tab.key ? 'accent' : 'default'}
-                size="sm"
-              >
-                {statusCounts[tab.key]}
-              </Badge>
-            </motion.button>
-          ))}
-        </div>
-
-        {/* Search */}
-        <SearchBar
-          onSearch={handleSearch}
-          placeholder="Search documents by title, type, or jurisdiction..."
-        />
-      </motion.div>
+          {/* Enhanced Status Filter Tabs */}
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 shadow-soft p-6 mb-8">
+            <div className="flex flex-wrap gap-3">
+              {[
+                { key: 'all', label: 'All Documents', icon: 'FileText' },
+                { key: 'draft', label: 'Drafts', icon: 'Edit3' },
+                { key: 'review', label: 'In Review', icon: 'Eye' },
+                { key: 'signed', label: 'Signed', icon: 'CheckCircle' },
+                { key: 'completed', label: 'Completed', icon: 'Archive' }
+              ].map((tab) => (
+                <motion.button
+                  key={tab.key}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setStatusFilter(tab.key)}
+                  className={`flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
+                    statusFilter === tab.key
+                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                      : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900 hover:shadow-md'
+                  }`}
+                >
+                  <ApperIcon name={tab.icon} className="w-5 h-5" />
+                  <span>{tab.label}</span>
+                  <Badge
+                    variant={statusFilter === tab.key ? 'accent' : 'default'}
+                    size="sm"
+                    className="shadow-sm"
+                  >
+                    {statusCounts[tab.key]}
+                  </Badge>
+                </motion.button>
+              ))}
+            </div>
+          </div>
+{/* Enhanced Search */}
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 shadow-soft p-6">
+            <SearchBar
+              onSearch={handleSearch}
+              placeholder="Search documents by title, type, or jurisdiction..."
+            />
+          </div>
+        </motion.div>
 
       {/* Documents Grid */}
       {filteredDocuments.length === 0 ? (
@@ -207,22 +219,23 @@ const MyDocuments = () => {
           icon={documents.length === 0 ? "FileText" : "Search"}
         />
       ) : (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-        >
-          {filteredDocuments.map((document, index) => (
-            <DocumentCard
-              key={document.id}
-              document={document}
-              onUpdate={loadDocuments}
-              index={index}
-            />
-          ))}
-        </motion.div>
-      )}
+<motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+          >
+            {filteredDocuments.map((document, index) => (
+              <DocumentCard
+                key={document.id}
+                document={document}
+                onUpdate={loadDocuments}
+                index={index}
+              />
+))}
+          </motion.div>
+        )}
+      </div>
     </div>
   );
 };

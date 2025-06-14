@@ -170,24 +170,26 @@ const QuestionnaireForm = ({
   const visibleQuestions = getVisibleQuestions();
   const isLastStep = currentStep === totalSteps - 1;
 
-  return (
-    <div className={`max-w-2xl mx-auto ${className}`}>
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-display font-semibold text-surface-900">
-            Document Questionnaire
-          </h2>
-          <span className="text-sm text-surface-500">
-            Step {currentStep + 1} of {totalSteps}
-          </span>
+return (
+    <div className={`max-w-3xl mx-auto ${className}`}>
+      {/* Enhanced Header */}
+      <div className="mb-10">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 shadow-soft p-8">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-3xl font-display font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Document Questionnaire
+            </h2>
+            <span className="text-sm text-slate-600 font-semibold bg-slate-100 px-3 py-1 rounded-lg">
+              Step {currentStep + 1} of {totalSteps}
+            </span>
+          </div>
+          
+          <ProgressBar 
+            progress={progress} 
+            showPercentage 
+            className="mb-2" 
+          />
         </div>
-        
-        <ProgressBar 
-          progress={progress} 
-          showPercentage 
-          className="mb-2" 
-        />
       </div>
 
       {/* Questions */}
@@ -218,49 +220,59 @@ const QuestionnaireForm = ({
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation */}
-      <div className="flex items-center justify-between pt-6 border-t border-surface-200">
-        <div className="flex space-x-3">
-          <Button 
-            variant="ghost"
-            onClick={onCancel}
-            icon="X"
-          >
-            Cancel
-          </Button>
-          
-          {currentStep > 0 && (
+{/* Enhanced Navigation */}
+      <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-200/50 shadow-soft p-6">
+        <div className="flex items-center justify-between">
+          <div className="flex space-x-3">
             <Button 
-              variant="outline"
-              onClick={handlePrevious}
-              icon="ChevronLeft"
+              variant="ghost"
+              onClick={onCancel}
+              icon="X"
+              className="border border-slate-300 hover:bg-slate-100 hover:shadow-md"
             >
-              Previous
+              Cancel
             </Button>
-          )}
-        </div>
+            
+            {currentStep > 0 && (
+              <Button 
+                variant="outline"
+                onClick={handlePrevious}
+                icon="ChevronLeft"
+                className="border-slate-300 hover:border-slate-400 hover:bg-slate-50 hover:shadow-md"
+              >
+                Previous
+              </Button>
+            )}
+          </div>
         
-        <div className="flex space-x-3">
-          {!isLastStep ? (
-            <Button 
-              variant="primary"
-              onClick={handleNext}
-              loading={validating}
-              icon="ChevronRight"
-              iconPosition="right"
-            >
-              Next
-            </Button>
-          ) : (
-            <Button 
-              variant="primary"
-              onClick={handleSubmit}
-              loading={isSubmitting}
-              icon="Check"
-            >
-              Complete
-            </Button>
-          )}
+<div className="flex space-x-3">
+            {!isLastStep ? (
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Button 
+                  variant="primary"
+                  onClick={handleNext}
+                  loading={validating}
+                  icon="ChevronRight"
+                  iconPosition="right"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl"
+                >
+                  Next
+                </Button>
+              </motion.div>
+            ) : (
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Button 
+                  variant="primary"
+                  onClick={handleSubmit}
+                  loading={isSubmitting}
+                  icon="Check"
+                  className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-lg hover:shadow-xl"
+                >
+                  Complete
+                </Button>
+              </motion.div>
+            )}
+          </div>
         </div>
       </div>
     </div>
