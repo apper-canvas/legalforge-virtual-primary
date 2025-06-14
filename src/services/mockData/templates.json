@@ -1,0 +1,138 @@
+[
+  {
+    "id": "rental-agreement",
+    "name": "Rental Agreement",
+    "description": "Comprehensive residential lease agreement with tenant protections and landlord rights",
+    "category": "Real Estate",
+    "icon": "Home",
+    "estimatedTime": "15-20 minutes",
+    "riskLevel": "low",
+    "jurisdictions": ["California", "New York", "Texas", "Florida", "Illinois"],
+    "features": [
+      "Rent and deposit terms",
+      "Property maintenance clauses", 
+      "Tenant rights and responsibilities",
+      "Lease termination conditions"
+    ],
+    "popularity": 95
+  },
+  {
+    "id": "nda",
+    "name": "Non-Disclosure Agreement",
+    "description": "Protect confidential information in business relationships and partnerships",
+    "category": "Business",
+    "icon": "Shield",
+    "estimatedTime": "10-15 minutes",
+    "riskLevel": "medium", 
+    "jurisdictions": ["All US States"],
+    "features": [
+      "Mutual or one-way confidentiality",
+      "Definition of confidential information",
+      "Permitted disclosures",
+      "Duration and termination"
+    ],
+    "popularity": 88
+  },
+  {
+    "id": "service-contract",
+    "name": "Service Contract",
+    "description": "Professional service agreements for freelancers and contractors",
+    "category": "Business",
+    "icon": "Briefcase",
+    "estimatedTime": "12-18 minutes",
+    "riskLevel": "medium",
+    "jurisdictions": ["All US States"],
+    "features": [
+      "Scope of work definition",
+      "Payment terms and schedule",
+      "Intellectual property rights",
+      "Liability and indemnification"
+    ],
+    "popularity": 76
+  },
+  {
+    "id": "partnership-deed",
+    "name": "Partnership Agreement",
+    "description": "Establish business partnerships with clear roles and profit sharing",
+    "category": "Business",
+    "icon": "Users",
+    "estimatedTime": "25-35 minutes",
+    "riskLevel": "high",
+    "jurisdictions": ["Delaware", "Nevada", "California", "New York"],
+    "features": [
+      "Partner roles and responsibilities", 
+      "Capital contributions",
+      "Profit and loss distribution",
+      "Decision making process"
+    ],
+    "popularity": 64
+  },
+  {
+    "id": "employment-contract",
+    "name": "Employment Contract",
+    "description": "Comprehensive employment agreements with benefits and termination clauses",
+    "category": "Employment",
+    "icon": "UserCheck",
+    "estimatedTime": "20-25 minutes",
+    "riskLevel": "medium",
+    "jurisdictions": ["All US States"],
+    "features": [
+      "Job description and duties",
+      "Compensation and benefits",
+      "Non-compete clauses",
+      "Termination procedures"
+    ],
+    "popularity": 71
+  },
+  {
+    "id": "sales-contract",
+    "name": "Sales Agreement",
+    "description": "Purchase and sale agreements for goods and services",
+    "category": "Commerce",
+    "icon": "ShoppingCart",
+    "estimatedTime": "15-20 minutes",
+    "riskLevel": "low",
+    "jurisdictions": ["All US States"],
+    "features": [
+      "Product or service description",
+      "Payment terms",
+      "Delivery conditions",
+      "Warranty provisions"
+    ],
+    "popularity": 59
+  },
+  {
+    "id": "loan-agreement",
+    "name": "Loan Agreement",
+    "description": "Personal and business loan contracts with repayment terms",
+    "category": "Finance",
+    "icon": "DollarSign",
+    "estimatedTime": "18-25 minutes",
+    "riskLevel": "high",
+    "jurisdictions": ["All US States"],
+    "features": [
+      "Loan amount and interest rate",
+      "Repayment schedule",
+      "Collateral requirements",
+      "Default consequences"
+    ],
+    "popularity": 52
+  },
+  {
+    "id": "consulting-agreement",
+    "name": "Consulting Agreement",
+    "description": "Professional consulting services with project deliverables",
+    "category": "Business",
+    "icon": "Target",
+    "estimatedTime": "12-18 minutes",
+    "riskLevel": "medium",
+    "jurisdictions": ["All US States"],
+    "features": [
+      "Consulting services scope",
+      "Project deliverables",
+      "Fee structure",
+      "Confidentiality provisions"
+    ],
+    "popularity": 67
+  }
+]

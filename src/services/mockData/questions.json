@@ -1,0 +1,344 @@
+{
+  "rental-agreement": [
+    {
+      "id": "landlordName",
+      "text": "Landlord's Full Name",
+      "type": "text",
+      "required": true,
+      "helpText": "Enter the full legal name of the property owner or authorized agent"
+    },
+    {
+      "id": "tenantName", 
+      "text": "Tenant's Full Name",
+      "type": "text",
+      "required": true,
+      "helpText": "Enter the full legal name of the person(s) who will be renting the property"
+    },
+    {
+      "id": "propertyAddress",
+      "text": "Property Address",
+      "type": "text",
+      "required": true,
+      "helpText": "Complete address including street, city, state, and ZIP code"
+    },
+    {
+      "id": "rentAmount",
+      "text": "Monthly Rent Amount ($)",
+      "type": "number",
+      "required": true,
+      "helpText": "The monthly rent amount in US dollars"
+    },
+    {
+      "id": "securityDeposit",
+      "text": "Security Deposit Amount ($)",
+      "type": "number", 
+      "required": true,
+      "helpText": "Amount held as security for damages (typically 1-2 months rent)"
+    },
+    {
+      "id": "startDate",
+      "text": "Lease Start Date",
+      "type": "date",
+      "required": true,
+      "helpText": "The date when the tenant can move in and rent begins"
+    },
+    {
+      "id": "endDate",
+      "text": "Lease End Date", 
+      "type": "date",
+      "required": true,
+      "helpText": "The date when the lease naturally expires"
+    },
+    {
+      "id": "leaseTerm",
+      "text": "Lease Term",
+      "type": "select",
+      "required": true,
+      "options": ["6 months", "12 months", "18 months", "24 months", "Month-to-month"],
+      "helpText": "Duration of the lease agreement"
+    },
+    {
+      "id": "rentDueDate",
+      "text": "Rent Due Date",
+      "type": "select",
+      "required": true,
+      "options": ["1st", "15th", "Last day of month"],
+      "helpText": "Day of the month when rent is due"
+    },
+    {
+      "id": "petsAllowed",
+      "text": "Are pets allowed?",
+      "type": "radio",
+      "required": true,
+      "options": ["Yes", "No", "With approval"],
+      "helpText": "Pet policy for the rental property"
+    },
+    {
+      "id": "petDeposit",
+      "text": "Pet Deposit Amount ($)",
+      "type": "number",
+      "required": false,
+      "dependsOn": { "questionId": "petsAllowed", "value": "Yes" },
+      "helpText": "Additional deposit required for pets (if applicable)"
+    }
+  ],
+  "nda": [
+    {
+      "id": "disclosingParty",
+      "text": "Disclosing Party Name",
+      "type": "text", 
+      "required": true,
+      "helpText": "Name of the person or company sharing confidential information"
+    },
+    {
+      "id": "receivingParty",
+      "text": "Receiving Party Name",
+      "type": "text",
+      "required": true,
+      "helpText": "Name of the person or company receiving confidential information"
+    },
+    {
+      "id": "ndaType",
+      "text": "Type of NDA",
+      "type": "radio",
+      "required": true,
+      "options": ["One-way (Unilateral)", "Mutual (Bilateral)"],
+      "helpText": "One-way: Only one party shares confidential info. Mutual: Both parties share confidential info."
+    },
+    {
+      "id": "informationType",
+      "text": "Type of Confidential Information",
+      "type": "checkbox",
+      "required": true,
+      "options": ["Trade secrets", "Business plans", "Financial information", "Customer data", "Technical information", "Marketing strategies"],
+      "helpText": "Select all types of information that will be considered confidential"
+    },
+    {
+      "id": "duration",
+      "text": "Agreement Duration",
+      "type": "select",
+      "required": true,
+      "options": ["1 year", "2 years", "3 years", "5 years", "Indefinite"],
+      "helpText": "How long the confidentiality obligations will last"
+    },
+    {
+      "id": "purpose",
+      "text": "Purpose of Disclosure",
+      "type": "text",
+      "required": true,
+      "helpText": "Brief description of why confidential information is being shared"
+    },
+    {
+      "id": "exceptions",
+      "text": "Are there any exceptions to confidentiality?",
+      "type": "checkbox",
+      "required": false,
+      "options": ["Publicly available information", "Information received from third parties", "Information developed independently"],
+      "helpText": "Standard exceptions that may apply"
+    }
+  ],
+  "service-contract": [
+    {
+      "id": "serviceProvider",
+      "text": "Service Provider Name",
+      "type": "text",
+      "required": true,
+      "helpText": "Full name or business name of the person/company providing services"
+    },
+    {
+      "id": "client",
+      "text": "Client Name",
+      "type": "text",
+      "required": true,
+      "helpText": "Full name or business name of the person/company receiving services"
+    },
+    {
+      "id": "serviceDescription",
+      "text": "Description of Services",
+      "type": "textarea",
+      "required": true,
+      "helpText": "Detailed description of the services to be provided"
+    },
+    {
+      "id": "deliverables",
+      "text": "Project Deliverables",
+      "type": "textarea",
+      "required": true,
+      "helpText": "Specific outputs or results that will be delivered"
+    },
+    {
+      "id": "timeline",
+      "text": "Project Timeline",
+      "type": "text",
+      "required": true,
+      "helpText": "Expected duration or completion date for the project"
+    },
+    {
+      "id": "compensation",
+      "text": "Total Compensation ($)",
+      "type": "number",
+      "required": true,
+      "helpText": "Total amount to be paid for the services"
+    },
+    {
+      "id": "paymentSchedule",
+      "text": "Payment Schedule",
+      "type": "select",
+      "required": true,
+      "options": ["50% upfront, 50% on completion", "Monthly payments", "Upon completion", "25% upfront, 75% on completion"],
+      "helpText": "When and how payments will be made"
+    },
+    {
+      "id": "intellectualProperty",
+      "text": "Intellectual Property Rights",
+      "type": "radio",
+      "required": true,
+      "options": ["Client owns all work product", "Service provider retains rights", "Shared ownership"],
+      "helpText": "Who will own the intellectual property created during the project"
+    }
+  ],
+  "partnership-deed": [
+    {
+      "id": "partnershipName",
+      "text": "Partnership Name",
+      "type": "text",
+      "required": true,
+      "helpText": "Official name of the business partnership"
+    },
+    {
+      "id": "partner1Name",
+      "text": "First Partner Name",
+      "type": "text",
+      "required": true,
+      "helpText": "Full legal name of the first partner"
+    },
+    {
+      "id": "partner2Name",
+      "text": "Second Partner Name",
+      "type": "text",
+      "required": true,
+      "helpText": "Full legal name of the second partner"
+    },
+    {
+      "id": "businessPurpose",
+      "text": "Business Purpose",
+      "type": "textarea",
+      "required": true,
+      "helpText": "Description of the business activities and objectives"
+    },
+    {
+      "id": "partner1Contribution",
+      "text": "First Partner's Capital Contribution ($)",
+      "type": "number",
+      "required": true,
+      "helpText": "Amount of money or value of assets contributed by first partner"
+    },
+    {
+      "id": "partner2Contribution",
+      "text": "Second Partner's Capital Contribution ($)",
+      "type": "number",
+      "required": true,
+      "helpText": "Amount of money or value of assets contributed by second partner"
+    },
+    {
+      "id": "profitSharing",
+      "text": "Profit Sharing Ratio",
+      "type": "select",
+      "required": true,
+      "options": ["50/50", "60/40", "70/30", "Based on capital contribution", "Other"],
+      "helpText": "How profits and losses will be shared between partners"
+    },
+    {
+      "id": "managementStructure",
+      "text": "Management Structure",
+      "type": "radio",
+      "required": true,
+      "options": ["Equal management rights", "One managing partner", "Divided by expertise areas"],
+      "helpText": "How business decisions and operations will be managed"
+    },
+    {
+      "id": "dissolutionTerms",
+      "text": "Partnership Duration",
+      "type": "select",
+      "required": true,
+      "options": ["Indefinite", "5 years", "10 years", "Until specific goal achieved"],
+      "helpText": "How long the partnership is intended to last"
+    }
+  ],
+  "employment-contract": [
+    {
+      "id": "employerName",
+      "text": "Employer Name",
+      "type": "text",
+      "required": true,
+      "helpText": "Full legal name of the employing company or individual"
+    },
+    {
+      "id": "employeeName",
+      "text": "Employee Name",
+      "type": "text",
+      "required": true,
+      "helpText": "Full legal name of the employee"
+    },
+    {
+      "id": "jobTitle",
+      "text": "Job Title",
+      "type": "text",
+      "required": true,
+      "helpText": "Official position title"
+    },
+    {
+      "id": "department",
+      "text": "Department",
+      "type": "text",
+      "required": false,
+      "helpText": "Department or division where employee will work"
+    },
+    {
+      "id": "startDate",
+      "text": "Employment Start Date",
+      "type": "date",
+      "required": true,
+      "helpText": "First day of employment"
+    },
+    {
+      "id": "salary",
+      "text": "Annual Salary ($)",
+      "type": "number",
+      "required": true,
+      "helpText": "Annual compensation in US dollars"
+    },
+    {
+      "id": "payFrequency",
+      "text": "Pay Frequency",
+      "type": "select",
+      "required": true,
+      "options": ["Weekly", "Bi-weekly", "Semi-monthly", "Monthly"],
+      "helpText": "How often the employee will be paid"
+    },
+    {
+      "id": "workSchedule",
+      "text": "Work Schedule",
+      "type": "select",
+      "required": true,
+      "options": ["Full-time (40 hours/week)", "Part-time", "Flexible hours", "Remote work"],
+      "helpText": "Expected work hours and arrangement"
+    },
+    {
+      "id": "benefits",
+      "text": "Benefits Package",
+      "type": "checkbox",
+      "required": false,
+      "options": ["Health insurance", "Dental insurance", "Vision insurance", "401(k)", "Paid time off", "Sick leave"],
+      "helpText": "Select all benefits that will be provided"
+    },
+    {
+      "id": "probationPeriod",
+      "text": "Probationary Period",
+      "type": "select",
+      "required": false,
+      "options": ["None", "30 days", "60 days", "90 days", "6 months"],
+      "helpText": "Initial evaluation period for new employee"
+    }
+  ]
+}

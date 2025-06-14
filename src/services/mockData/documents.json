@@ -1,0 +1,163 @@
+[
+  {
+    "id": "1",
+    "type": "rental-agreement",
+    "title": "Downtown Apartment Lease",
+    "status": "signed",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "updatedAt": "2024-01-16T14:20:00Z",
+    "jurisdiction": "California",
+    "riskLevel": "low",
+    "content": {
+      "title": "RESIDENTIAL LEASE AGREEMENT",
+      "sections": [
+        {
+          "title": "PARTIES",
+          "content": "This Residential Lease Agreement is entered into on January 15, 2024 between John Smith (Landlord) and Sarah Johnson (Tenant)."
+        },
+        {
+          "title": "PROPERTY",
+          "content": "Landlord hereby leases to Tenant the residential property located at 123 Main Street, Apt 2B, San Francisco, CA 94102."
+        },
+        {
+          "title": "TERM",
+          "content": "The lease term shall commence on February 1, 2024 and end on January 31, 2025, for a total period of 12 months."
+        },
+        {
+          "title": "RENT",
+          "content": "Tenant agrees to pay rent in the amount of $2,800 per month, due on the 1st day of each month."
+        }
+      ]
+    },
+    "signatures": [
+      {
+        "signerId": "landlord-1",
+        "name": "John Smith",
+        "email": "john.smith@email.com",
+        "role": "Landlord"
+      },
+      {
+        "signerId": "tenant-1", 
+        "name": "Sarah Johnson",
+        "email": "sarah.johnson@email.com",
+        "role": "Tenant"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "type": "nda",
+    "title": "Tech Startup NDA",
+    "status": "review",
+    "createdAt": "2024-01-18T09:15:00Z",
+    "updatedAt": "2024-01-18T16:45:00Z",
+    "jurisdiction": "New York",
+    "riskLevel": "medium",
+    "content": {
+      "title": "NON-DISCLOSURE AGREEMENT",
+      "sections": [
+        {
+          "title": "PARTIES",
+          "content": "This Non-Disclosure Agreement is entered into between TechFlow Inc. (Disclosing Party) and Innovation Labs LLC (Receiving Party)."
+        },
+        {
+          "title": "CONFIDENTIAL INFORMATION",
+          "content": "For purposes of this Agreement, Confidential Information shall mean proprietary software code, business strategies, and customer data."
+        }
+      ]
+    },
+    "signatures": []
+  },
+  {
+    "id": "3",
+    "type": "service-contract",
+    "title": "Web Development Agreement",
+    "status": "draft",
+    "createdAt": "2024-01-20T11:00:00Z",
+    "updatedAt": "2024-01-20T11:00:00Z",
+    "jurisdiction": "Texas",
+    "riskLevel": "low",
+    "content": {
+      "title": "SERVICE AGREEMENT",
+      "sections": [
+        {
+          "title": "SERVICES",
+          "content": "Contractor agrees to provide web development services including design, development, and deployment of a business website."
+        },
+        {
+          "title": "COMPENSATION",
+          "content": "Client agrees to pay $5,000 for the completion of services, payable in two installments."
+        }
+      ]
+    },
+    "signatures": []
+  },
+  {
+    "id": "4",
+    "type": "partnership-deed",
+    "title": "Marketing Agency Partnership",
+    "status": "completed",
+    "createdAt": "2024-01-10T14:30:00Z",
+    "updatedAt": "2024-01-12T10:15:00Z",
+    "jurisdiction": "Florida",
+    "riskLevel": "high",
+    "content": {
+      "title": "PARTNERSHIP AGREEMENT",
+      "sections": [
+        {
+          "title": "PARTNERS",
+          "content": "This Partnership Agreement is entered into between Michael Davis and Jennifer Wilson to form Creative Marketing Partners."
+        },
+        {
+          "title": "CAPITAL CONTRIBUTION",
+          "content": "Each partner shall contribute $25,000 as initial capital investment."
+        }
+      ]
+    },
+    "signatures": [
+      {
+        "signerId": "partner-1",
+        "name": "Michael Davis", 
+        "email": "michael.davis@email.com",
+        "role": "Partner"
+      },
+      {
+        "signerId": "partner-2",
+        "name": "Jennifer Wilson",
+        "email": "jennifer.wilson@email.com", 
+        "role": "Partner"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "type": "employment-contract",
+    "title": "Senior Developer Position",
+    "status": "signed",
+    "createdAt": "2024-01-22T08:45:00Z",
+    "updatedAt": "2024-01-23T13:30:00Z",
+    "jurisdiction": "Washington",
+    "riskLevel": "medium",
+    "content": {
+      "title": "EMPLOYMENT AGREEMENT",
+      "sections": [
+        {
+          "title": "POSITION",
+          "content": "Employee will serve as Senior Software Developer reporting to the Chief Technology Officer."
+        },
+        {
+          "title": "COMPENSATION",
+          "content": "Employee shall receive an annual salary of $95,000, payable bi-weekly."
+        }
+      ]
+    },
+    "signatures": [
+      {
+        "signerId": "employer-1",
+        "name": "DataTech Solutions",
+        "email": "hr@datatech.com",
+        "role": "Employer"
+      }
+    ]
+  }
+]
